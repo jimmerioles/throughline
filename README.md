@@ -35,6 +35,16 @@ Edits and card positions save to localStorage. Reset demo restores the original 
 
 On screens at or below 760px wide or 520px tall, the demo renders the same cards as a flat document. On browsers without HTML-in-Canvas, the flat view is also the fallback, with a note about Chrome 157+.
 
+## Case study
+
+![The Throughline case study page](docs/case-study.png)
+
+The demo includes a written case study at `#/case-study`. It makes the argument in one scroll: why canvas interfaces lose the document, how Throughline compares with html2canvas, how the render path works, the performance budgets, the accessibility model, and the limits.
+
+The page is normal DOM, so it works in Safari, Firefox, and on mobile. It uses hash routing, so it also works on GitHub Pages without a server rewrite. Open the demo and choose Case study in the top bar, or add `#/case-study` to the URL.
+
+The 60-second walkthrough video is not recorded yet. The case study page shows an intentional poster with the shot list, and the production script is in [docs/demo-script.md](docs/demo-script.md). It includes the 15-second cut and the recording notes.
+
 ## Run it
 
 ```bash
@@ -70,7 +80,9 @@ npm run preview
 ## Documentation
 
 - [Product brief](docs/product/prd.md): problem, audience, scope, acceptance criteria.
-- [Architecture](docs/architecture.md): rendering lifecycle, zoom strategy, accessibility, fallback.
+- [Architecture](docs/architecture.md): runtime map, routing, rendering lifecycle, zoom strategy, accessibility, fallback.
+- Case study page: open the demo and select Case study, or add `#/case-study` to the URL.
+- [Walkthrough script](docs/demo-script.md): 60-second and 15-second shot lists, recording notes.
 - [Design system](docs/design-system.md): palette, type, card anatomy, motion.
 - [Manual test plan](docs/qa/manual-test-plan.md): browser matrix and release checks.
 - [Operations](docs/operations.md): deploy, rollback, support, security.
@@ -142,11 +154,17 @@ Export waits for the next `paint` event after clearing the selection and structu
 - CSS transforms on a drawable element are ignored for drawing. The board moves the camera and the draw positions, not the cards' CSS transforms.
 - The Structure view is a semantic map, not a full accessibility tree inspector.
 - The exported PNG is the current board view, not a separate print layout.
+- The case study video is not recorded yet. The script is in [docs/demo-script.md](docs/demo-script.md).
+- The case study comparison is editorial. It does not run a live html2canvas benchmark.
 
 ## Project structure
 
 ```
 src/
+  main.tsx                React entry, root render
+  Root.tsx                hash route switch between the board and the case study
+  routing.ts              hash parsing and the route hook
+  routing.test.tsx        case study route and back link test
   App.tsx                 app shell, modes, keyboard, persistence, export
   App.test.tsx            flat fallback interaction test
   board/
@@ -160,6 +178,10 @@ src/
     storage.ts            localStorage persistence
     storage.test.ts       storage round-trip tests
     types.ts              shared types
+  case-study/
+    CaseStudy.tsx         the public case study page
+    case-study.css        editorial layout for the case study
+    images/               optimized screenshots used by the page
   test/setup.ts           Vitest and Testing Library setup
   index.css               design tokens and base styles
   App.css                 app chrome, present HUD, structure panel, flat view
@@ -169,8 +191,10 @@ docs/
   architecture.md         runtime, rendering, zoom, accessibility, debugging
   design-system.md        palette, type, card anatomy, motion
   qa/manual-test-plan.md  browser matrix and release checks
+  demo-script.md          60-second and 15-second walkthrough scripts
   operations.md           deploy, rollback, support, security
   roadmap.md              next milestones and non-goals
+  case-study.png          case study page screenshot
   decisions/              architecture decision records
 .github/
   workflows/              CI and GitHub Pages deployment
@@ -191,11 +215,11 @@ CHANGELOG.md              release history
 
 ## What I would do next
 
-The next milestone is the public case study. See the [roadmap](docs/roadmap.md) for the acceptance criteria and later ideas. In short:
+The next milestone is to publish the case study release. See the [roadmap](docs/roadmap.md) for the acceptance criteria and later ideas. In short:
 
-- A case study route with the problem, architecture, performance numbers, accessibility notes, and limitations.
-- A 60-second walkthrough script and recording.
-- A before/after comparison against `html2canvas`.
+- Record the 60-second walkthrough and embed it in the case study.
+- Deploy the public demo and check the canvas and flat paths from the live URL.
+- A live comparison route that runs `html2canvas` beside the board, beyond the editorial table.
 - A worker-based export at 2x or 4x.
 - A WebGL version of the same board for depth, blur, and page transitions.
 

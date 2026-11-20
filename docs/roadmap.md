@@ -14,26 +14,34 @@ Shipped 2026-11-20.
 - Flat fallback and compact view.
 - CI, tests, and documentation.
 
-## Next
+## Case study
 
-The next milestone is the public case study. It has two deliverables:
+Shipped 2026-11-20. The page and the script are in the repository; the recording and the public deployment are the remaining release tasks.
 
-1. A case study page on the same site with the problem, the approach, the architecture, performance notes, accessibility notes, limitations, and a short walkthrough video.
-2. A 60-second walkthrough script that a presenter or a recording can follow without narration improvisation.
-
-Why this is next: the demo exists, but a hiring manager or product lead needs the argument in one scroll. The case study turns the demo into a portfolio piece.
+- A public case study at `#/case-study` with the problem, an html2canvas comparison, the architecture, performance notes, accessibility notes, limitations, and next steps.
+- Hash routing for the board and the case study, with no router dependency.
+- A 60-second walkthrough script with a 15-second cut and recording notes in [demo-script.md](demo-script.md).
+- A poster that points to the shot list and states that the recording is pending.
+- A route test and optimized screenshots for the page.
+- README, CHANGELOG, architecture, and QA documentation updated.
 
 Acceptance criteria:
 
-- A visitor can understand the HTML-in-Canvas value without opening DevTools.
-- The page includes a 60-second video or a looping capture.
-- The page includes a before/after against html2canvas for text quality and accessibility.
-- The page includes real numbers: card count, paint behavior, zoom behavior, present transition.
-- The page is linked from the demo and the README.
+- [x] A visitor can understand the HTML-in-Canvas value without opening DevTools.
+- [ ] The page includes a 60-second video or a looping capture. The script is ready; the recording is pending.
+- [x] The page includes a before/after against html2canvas for text quality, selection, and accessibility.
+- [x] The page includes real numbers: card count, paint behavior, zoom behavior, present transition.
+- [x] The page is linked from the demo and the README.
+
+## Next
+
+1. **Record the walkthrough.** Follow [demo-script.md](demo-script.md), capture at 1440x900 in Chrome 157, and replace the poster with the video.
+2. **Deploy the public demo.** Confirm the canvas path in Chrome 157 and the flat fallback in Firefox or Safari from the live URL.
+3. **Publish a frame trace.** Measure paint counts and frame pacing on a mid-range laptop, then replace the design budgets with measured numbers where possible.
+4. **Add a live comparison route.** Keep the editorial table and add a runnable html2canvas side-by-side for visitors who want the details.
 
 ## Later
 
-- A small before/after comparison route against html2canvas with text quality, selection, accessibility, and timing.
 - A 2x and 4x export path using `captureElementImage()` and `OffscreenCanvas`.
 - A new-card flow with a small card type system.
 - A WebGL version of the same board for depth, blur, and transitions.

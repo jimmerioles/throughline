@@ -6,10 +6,11 @@ Start with the document that matches the question.
 
 - [Product brief](product/prd.md): problem, audience, scope, acceptance criteria, risks.
 - [Roadmap](roadmap.md): what shipped, what is next, what is not planned.
+- [Walkthrough script](demo-script.md): 60-second and 15-second shot lists, recording notes, and the recording checklist.
 
 ## Engineering
 
-- [Architecture](architecture.md): runtime map, rendering lifecycle, zoom strategy, accessibility, fallback, performance, debugging.
+- [Architecture](architecture.md): runtime map, routing, rendering lifecycle, zoom strategy, accessibility, fallback, performance, debugging.
 - [Design system](design-system.md): palette, type, card anatomy, chrome, motion, do and do not.
 - [Manual test plan](qa/manual-test-plan.md): browser matrix, interaction checks, accessibility checks, release checklist.
 - [Operations](operations.md): local development, deployment, rollback, incident playbooks, security, privacy.
@@ -29,6 +30,8 @@ Start with the document that matches the question.
 - `present.png`: presentation mode.
 - `structure.png`: the DOM behind the pixels.
 - `compact.png`: the compact flat view.
+- `case-study.png`: the public case study page at 1440x900.
+- `case-study-mobile.png`: the case study at 390x844 in a 2x capture.
 
 ## Agent instructions
 

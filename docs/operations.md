@@ -62,6 +62,8 @@ The repository includes `.github/workflows/deploy-pages.yml`.
 3. Set Source to GitHub Actions.
 4. Open the deployment URL from the workflow run.
 
+The case study uses hash routing, so Pages needs no rewrite rule. The board is at the base URL and the case study is at `#/case-study`.
+
 ### Cloudflare Pages, Netlify, or Vercel
 
 Use these settings:
@@ -130,7 +132,7 @@ If analytics are added later, keep them privacy-friendly and document the change
 
 1. Confirm the build used `npm ci` and `npm run build`.
 2. Check the browser console for a module or MIME error.
-3. Confirm the static host serves `index.html` for the route.
+3. Confirm the static host serves `index.html` at the base path. Hash routes need no server rewrite.
 4. Confirm the base path matches the host path.
 
 ## Security
