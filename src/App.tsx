@@ -113,6 +113,15 @@ function IconCheck() {
   )
 }
 
+function IconCaseStudy() {
+  return (
+    <svg viewBox="0 0 16 16" className="icon" aria-hidden="true">
+      <path d="M4 2.5h5l3 3v8H4z" />
+      <path d="M9 2.5v3h3M6 8h4M6 10.5h4" />
+    </svg>
+  )
+}
+
 function BrandMark() {
   return (
     <svg viewBox="0 0 28 28" className="brand-mark__svg" aria-hidden="true">
@@ -466,6 +475,14 @@ function App() {
           </div>
 
           <div className="topbar__actions">
+            <a
+              className="button button--ghost"
+              href="#/case-study"
+              aria-label="Read the case study"
+            >
+              <IconCaseStudy />
+              <span>Case study</span>
+            </a>
             {flatView ? (
               <span className="topbar__flat-note">
                 {isUnsupported
