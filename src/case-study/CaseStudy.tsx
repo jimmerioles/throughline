@@ -83,9 +83,10 @@ const SHOTS = [
   {
     time: '0:06 to 0:16',
     title: 'Pan, then zoom',
-    action: 'Drag the background, then scroll slowly into the big idea card.',
+    action:
+      'Drag the background, then scroll slowly into the big idea card. Stop around 75 to 100 percent, while all three headline rows are still visible.',
     screen:
-      'The camera moves. The snapshot scales during the gesture, then the card is crisp once the zoom settles.',
+      'The camera moves. The snapshot scales during the gesture, then the card is crisp once the zoom settles. The headline card stays in frame.',
     narration:
       'Pan and zoom behave like a canvas. The text catches up when the gesture stops.',
   },
@@ -102,9 +103,10 @@ const SHOTS = [
   {
     time: '0:27 to 0:35',
     title: 'Approve the direction',
-    action: 'Click Mark approved. Hold for one beat.',
+    action:
+      'Pan up until The decision card is fully in frame, then click Mark approved. Hold for one beat.',
     screen:
-      'The button changes to Direction approved and the red stamp appears.',
+      'The button changes to Direction approved and the red stamp lands fully in frame.',
     narration:
       'Approve the direction and the stamp lands. The state survives a reload.',
   },
@@ -120,9 +122,10 @@ const SHOTS = [
   {
     time: '0:50 to 1:00',
     title: 'Show the DOM, then fit',
-    action: 'Press Escape, open Structure, close it, then click Fit.',
+    action:
+      'Press Escape, wait for the automatic fit, open Structure, close it, then click Fit.',
     screen:
-      'Outlines and a real list of cards appear. The panel closes and the whole board returns.',
+      'The board returns to the fitted view, then outlines and a real list of cards appear. The panel closes and the whole board returns.',
     narration:
       'Structure shows the DOM behind the pixels: roles, controls, tab order. Then Fit brings the whole board back.',
   },
