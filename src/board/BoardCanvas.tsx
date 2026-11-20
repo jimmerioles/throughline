@@ -309,11 +309,7 @@ export const BoardCanvas = forwardRef<BoardHandle, BoardCanvasProps>(
       (factor: number) => {
         const viewport = viewportRef.current
         const camera = cameraRef.current
-        const nextZoom = clamp(
-          camera.zoom * factor,
-          MIN_ZOOM,
-          MAX_ZOOM,
-        )
+        const nextZoom = clamp(camera.zoom * factor, MIN_ZOOM, MAX_ZOOM)
         cameraRef.current = zoomAroundPoint(
           camera,
           viewport.width / 2,
@@ -361,10 +357,7 @@ export const BoardCanvas = forwardRef<BoardHandle, BoardCanvasProps>(
         dprRef.current = dpr
         const backingWidth = Math.round(width * dpr)
         const backingHeight = Math.round(height * dpr)
-        if (
-          canvas.width !== backingWidth ||
-          canvas.height !== backingHeight
-        ) {
+        if (canvas.width !== backingWidth || canvas.height !== backingHeight) {
           canvas.width = backingWidth
           canvas.height = backingHeight
         }
@@ -490,14 +483,8 @@ export const BoardCanvas = forwardRef<BoardHandle, BoardCanvasProps>(
     }, [cancelAnimation])
 
     const handleCardPointerDown = useCallback(
-      (
-        event: ReactPointerEvent<HTMLElement>,
-        card: BoardCard,
-      ) => {
-        if (
-          modeRef.current === 'present' &&
-          presentIdRef.current !== card.id
-        ) {
+      (event: ReactPointerEvent<HTMLElement>, card: BoardCard) => {
+        if (modeRef.current === 'present' && presentIdRef.current !== card.id) {
           return
         }
         event.stopPropagation()
@@ -565,9 +552,7 @@ export const BoardCanvas = forwardRef<BoardHandle, BoardCanvasProps>(
           if (Math.abs(dx) > 0.5 || Math.abs(dy) > 0.5) {
             drag.moved = true
           }
-          const card = cardsRef.current.find(
-            (item) => item.id === drag.id,
-          )
+          const card = cardsRef.current.find((item) => item.id === drag.id)
           if (card) {
             card.x = drag.cardX + dx
             card.y = drag.cardY + dy
@@ -638,8 +623,7 @@ export const BoardCanvas = forwardRef<BoardHandle, BoardCanvasProps>(
             scale={renderScale}
             selected={selectedId === card.id && mode === 'explore'}
             interactive={
-              !showStructure &&
-              (mode === 'explore' || card.id === presentId)
+              !showStructure && (mode === 'explore' || card.id === presentId)
             }
             onPointerDown={handleCardPointerDown}
             onHeadlineChange={onHeadlineChange}

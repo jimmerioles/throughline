@@ -1,11 +1,6 @@
 import { isCardVisible } from './camera'
 import { BOARD_FOOTER, BOARD_SUBTITLE, BOARD_TITLE } from './data'
-import type {
-  BoardCard,
-  Camera,
-  Connection,
-  Viewport,
-} from './types'
+import type { BoardCard, Camera, Connection, Viewport } from './types'
 
 const DISPLAY_FONT = '"Fraunces Variable", Georgia, serif'
 const SANS_FONT = '"Instrument Sans Variable", system-ui, sans-serif'
@@ -119,10 +114,7 @@ function drawBackground(
   ctx.restore()
 }
 
-function drawBoardHeading(
-  ctx: CanvasRenderingContext2D,
-  camera: Camera,
-) {
+function drawBoardHeading(ctx: CanvasRenderingContext2D, camera: Camera) {
   ctx.save()
   ctx.translate(camera.x, camera.y)
   ctx.scale(camera.zoom, camera.zoom)
@@ -304,13 +296,7 @@ function drawCard(
     camera.zoom,
     strong,
   )
-  ctx.drawElementImage(
-    element,
-    rect.x,
-    rect.y,
-    rect.width,
-    rect.height,
-  )
+  ctx.drawElementImage(element, rect.x, rect.y, rect.width, rect.height)
 }
 
 function drawSelection(
@@ -397,14 +383,7 @@ function drawStructureOverlay(
     ctx.font = `500 10px ${SANS_FONT}`
     const labelWidth = ctx.measureText(label).width + 16
     ctx.fillStyle = 'rgba(18, 17, 15, 0.86)'
-    roundRect(
-      ctx,
-      rect.x + 8,
-      rect.y + rect.height - 26,
-      labelWidth,
-      18,
-      4,
-    )
+    roundRect(ctx, rect.x + 8, rect.y + rect.height - 26, labelWidth, 18, 4)
     ctx.fill()
     ctx.fillStyle = PAPER
     ctx.fillText(label, rect.x + 16, rect.y + rect.height - 13)

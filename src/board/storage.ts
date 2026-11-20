@@ -16,7 +16,10 @@ export function loadSaved(): SavedBoard | null {
   }
 }
 
-export function saveBoard(positions: SavedBoard['positions'], editable: EditableState) {
+export function saveBoard(
+  positions: SavedBoard['positions'],
+  editable: EditableState,
+) {
   try {
     const payload: SavedBoard = {
       version: 1,

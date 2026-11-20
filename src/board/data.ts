@@ -1,13 +1,9 @@
-import type {
-  BoardCard,
-  Connection,
-  EditableState,
-  PresentStep,
-} from './types'
+import type { BoardCard, Connection, EditableState, PresentStep } from './types'
 
 export const BOARD_TITLE = 'The Lumen'
 export const BOARD_SUBTITLE = 'A reopening campaign · Dec 2026'
-export const BOARD_FOOTER = 'Throughline · a spatial narrative board · made with HTML-in-Canvas'
+export const BOARD_FOOTER =
+  'Throughline · a spatial narrative board · made with HTML-in-Canvas'
 
 export const CARDS: BoardCard[] = [
   {

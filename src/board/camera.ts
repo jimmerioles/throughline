@@ -26,8 +26,14 @@ export function fitCamera(
   bounds: Bounds,
   insets: Insets,
 ): Camera {
-  const availableWidth = Math.max(1, viewport.width - insets.left - insets.right)
-  const availableHeight = Math.max(1, viewport.height - insets.top - insets.bottom)
+  const availableWidth = Math.max(
+    1,
+    viewport.width - insets.left - insets.right,
+  )
+  const availableHeight = Math.max(
+    1,
+    viewport.height - insets.top - insets.bottom,
+  )
   const boundsWidth = Math.max(1, bounds.maxX - bounds.minX)
   const boundsHeight = Math.max(1, bounds.maxY - bounds.minY)
   const zoom = clamp(

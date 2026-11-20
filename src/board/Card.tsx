@@ -1,10 +1,6 @@
 import { memo, useId } from 'react'
 import type { PointerEvent as ReactPointerEvent } from 'react'
-import {
-  CHECKLIST_ITEMS,
-  RISKS,
-  TIMELINE,
-} from './data'
+import { CHECKLIST_ITEMS, RISKS, TIMELINE } from './data'
 import type { BoardCard, EditableState } from './types'
 
 interface CardProps {
@@ -47,7 +43,10 @@ function CardBody({
   onHeadlineChoice,
   onChecklistToggle,
   onApprove,
-}: Omit<CardProps, 'scale' | 'flat' | 'selected' | 'interactive' | 'onPointerDown'> & {
+}: Omit<
+  CardProps,
+  'scale' | 'flat' | 'selected' | 'interactive' | 'onPointerDown'
+> & {
   checkboxPrefix: string
 }) {
   switch (card.kind) {

@@ -347,11 +347,7 @@
 
 .headline__radio:checked {
   border-color: var(--accent);
-  background: radial-gradient(
-    circle,
-    var(--accent) 0 38%,
-    transparent 42%
-  );
+  background: radial-gradient(circle, var(--accent) 0 38%, transparent 42%);
 }
 
 .headline__radio:focus-visible {

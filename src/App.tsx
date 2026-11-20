@@ -1,10 +1,4 @@
-import {
-  useCallback,
-  useEffect,
-  useMemo,
-  useRef,
-  useState,
-} from 'react'
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { flushSync } from 'react-dom'
 import { BoardCanvas } from './board/BoardCanvas'
 import type { BoardHandle } from './board/BoardCanvas'
@@ -208,8 +202,7 @@ function App() {
   const isUnsupported = useMemo(() => !supportsHtmlInCanvas(), [])
   const [isCompact, setIsCompact] = useState(
     () =>
-      typeof window !== 'undefined' &&
-      window.matchMedia(COMPACT_QUERY).matches,
+      typeof window !== 'undefined' && window.matchMedia(COMPACT_QUERY).matches,
   )
   const flatView = isUnsupported || isCompact
   const step = PRESENT_STEPS[presentIndex]
@@ -301,10 +294,7 @@ function App() {
   const goToStep = useCallback((index: number) => {
     const nextIndex = clamp(index, 0, PRESENT_STEPS.length - 1)
     setPresentIndex(nextIndex)
-    void boardRef.current?.showCard(
-      PRESENT_STEPS[nextIndex].cardId,
-      true,
-    )
+    void boardRef.current?.showCard(PRESENT_STEPS[nextIndex].cardId, true)
   }, [])
 
   const exitPresent = useCallback(() => {
@@ -366,9 +356,7 @@ function App() {
     const handleKeyDown = (event: KeyboardEvent) => {
       const target = event.target as HTMLElement | null
       const isTyping = Boolean(
-        target?.closest(
-          'input, textarea, select, [contenteditable="true"]',
-        ),
+        target?.closest('input, textarea, select, [contenteditable="true"]'),
       )
 
       if (flatView) {
@@ -400,9 +388,7 @@ function App() {
         return
       }
 
-      const isButton = Boolean(
-        target?.closest('button, a, [role="button"]'),
-      )
+      const isButton = Boolean(target?.closest('button, a, [role="button"]'))
 
       if (mode === 'present') {
         if (event.key === 'ArrowRight') {
@@ -525,9 +511,7 @@ function App() {
       ) : null}
 
       {!flatView ? (
-        <h1 className="sr-only">
-          Throughline: The Lumen reopening campaign
-        </h1>
+        <h1 className="sr-only">Throughline: The Lumen reopening campaign</h1>
       ) : null}
 
       {flatView ? (
@@ -551,22 +535,12 @@ function App() {
 
           <div className="flat-board__grid">
             {cards.map((card) => (
-              <Card
-                key={card.id}
-                card={card}
-                scale={1}
-                flat
-                {...cardProps}
-              />
+              <Card key={card.id} card={card} scale={1} flat {...cardProps} />
             ))}
           </div>
 
           <footer className="flat-board__footer">
-            <button
-              type="button"
-              className="text-button"
-              onClick={resetDemo}
-            >
+            <button type="button" className="text-button" onClick={resetDemo}>
               <IconReset />
               Reset demo
             </button>
@@ -583,7 +557,7 @@ function App() {
           connections={CONNECTIONS}
           selectedId={selectedId}
           mode={mode}
-          presentId={mode === 'present' ? step?.cardId ?? null : null}
+          presentId={mode === 'present' ? (step?.cardId ?? null) : null}
           showStructure={showStructure}
           onSelect={setSelectedId}
           onCameraChange={handleCameraChange}
@@ -635,11 +609,7 @@ function App() {
           </div>
 
           <div className="bottomright">
-            <button
-              type="button"
-              className="text-button"
-              onClick={resetDemo}
-            >
+            <button type="button" className="text-button" onClick={resetDemo}>
               <IconReset />
               Reset demo
             </button>
@@ -655,10 +625,7 @@ function App() {
       ) : null}
 
       {!flatView && mode === 'present' && step ? (
-        <section
-          className="present-hud"
-          aria-label="Presentation controls"
-        >
+        <section className="present-hud" aria-label="Presentation controls">
           <div
             className="present-hud__progress"
             role="progressbar"
@@ -748,9 +715,7 @@ function App() {
               className="icon-button"
               onClick={() => {
                 setShowStructure(false)
-                requestAnimationFrame(() =>
-                  structureButtonRef.current?.focus(),
-                )
+                requestAnimationFrame(() => structureButtonRef.current?.focus())
               }}
               aria-label="Close structure view"
             >
@@ -759,9 +724,9 @@ function App() {
           </div>
 
           <p className="structure-panel__intro">
-            Text, focus order, names, and controls survive the canvas. Exit
-            this view and press Tab to move through the real controls. Click
-            a row to fly to that card.
+            Text, focus order, names, and controls survive the canvas. Exit this
+            view and press Tab to move through the real controls. Click a row to
+            fly to that card.
           </p>
 
           <ol className="structure-list">
