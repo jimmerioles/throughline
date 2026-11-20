@@ -38,7 +38,7 @@ On screens at or below 760px wide or 520px tall, the demo renders the same cards
 ## Run it
 
 ```bash
-npm install
+npm ci
 npm run dev
 ```
 
@@ -46,12 +46,37 @@ Open the local URL in Chrome 157 or later. The API is on by default in Chrome 15
 
 For Chromium 147 to 156, Brave, or older Chrome builds, enable `chrome://flags/#canvas-draw-element`, relaunch, and open the demo. The canvas sets both the current `content="drawable"` and the older `layoutsubtree` attributes.
 
-Build:
+Quality gate:
+
+```bash
+npm run check
+```
+
+Build and preview:
 
 ```bash
 npm run build
 npm run preview
 ```
+
+## Repository engineering
+
+- CI runs format check, Oxlint, TypeScript, Vitest, and a production build on every push and pull request.
+- Husky and lint-staged keep staged files formatted and linted. Commitlint enforces conventional commits.
+- Dependabot opens weekly updates for npm and GitHub Actions.
+- The GitHub Pages workflow deploys `main`. The Vite base is relative, so the same build works on any static host.
+- `AGENTS.md` is the entry point for coding agents. Product, architecture, design, QA, operations, and decision records live in `docs/`.
+
+## Documentation
+
+- [Product brief](docs/product/prd.md): problem, audience, scope, acceptance criteria.
+- [Architecture](docs/architecture.md): rendering lifecycle, zoom strategy, accessibility, fallback.
+- [Design system](docs/design-system.md): palette, type, card anatomy, motion.
+- [Manual test plan](docs/qa/manual-test-plan.md): browser matrix and release checks.
+- [Operations](docs/operations.md): deploy, rollback, support, security.
+- [Roadmap](docs/roadmap.md): what shipped, what is next, what is not planned.
+- [Architecture decisions](docs/decisions/README.md): why the major choices exist.
+- [AGENTS.md](AGENTS.md): commands, invariants, and definition of done for agents.
 
 ## How it works
 
@@ -123,18 +148,37 @@ Export waits for the next `paint` event after clearing the selection and structu
 ```
 src/
   App.tsx                 app shell, modes, keyboard, persistence, export
+  App.test.tsx            flat fallback interaction test
   board/
     BoardCanvas.tsx       canvas, camera, paint loop, pointer interactions
     Card.tsx              the real HTML cards
     renderer.ts           background, connectors, cards, present and structure views
     camera.ts             fit, present, zoom, and animation math
+    camera.test.ts        camera math tests
     data.ts               The Lumen content and board layout
+    data.test.ts          board integrity tests
     storage.ts            localStorage persistence
+    storage.test.ts       storage round-trip tests
     types.ts              shared types
+  test/setup.ts           Vitest and Testing Library setup
   index.css               design tokens and base styles
   App.css                 app chrome, present HUD, structure panel, flat view
   board/board.css         card typography and content styles
-docs/                     screenshots used by this README
+docs/
+  product/prd.md          product brief and acceptance criteria
+  architecture.md         runtime, rendering, zoom, accessibility, debugging
+  design-system.md        palette, type, card anatomy, motion
+  qa/manual-test-plan.md  browser matrix and release checks
+  operations.md           deploy, rollback, support, security
+  roadmap.md              next milestones and non-goals
+  decisions/              architecture decision records
+.github/
+  workflows/              CI and GitHub Pages deployment
+  ISSUE_TEMPLATE/         bug and feature templates
+AGENTS.md                 agent entry point
+CONTRIBUTING.md           contributor guide
+SECURITY.md               vulnerability reporting
+CHANGELOG.md              release history
 ```
 
 ## Built with
@@ -142,15 +186,19 @@ docs/                     screenshots used by this README
 - HTML-in-Canvas, Chrome 157+
 - React 19, TypeScript, Vite
 - Fraunces, Instrument Sans, and DM Mono via Fontsource
+- Vitest and Testing Library for automated checks
+- Prettier, Oxlint, Husky, lint-staged, and commitlint for repository quality
 
 ## What I would do next
 
-- A real case study route with a 60-second walkthrough and performance numbers.
-- A "new card" flow and a small card type system.
+The next milestone is the public case study. See the [roadmap](docs/roadmap.md) for the acceptance criteria and later ideas. In short:
+
+- A case study route with the problem, architecture, performance numbers, accessibility notes, and limitations.
+- A 60-second walkthrough script and recording.
+- A before/after comparison against `html2canvas`.
 - A worker-based export at 2x or 4x.
-- A comparison page against `html2canvas` for text quality, accessibility, and speed.
 - A WebGL version of the same board for depth, blur, and page transitions.
 
 ## License
 
-No license has been added. Add one before distributing the code.
+[MIT](LICENSE) © 2026 Jim Merioles.
