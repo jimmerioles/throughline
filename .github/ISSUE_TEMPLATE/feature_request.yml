@@ -1,0 +1,62 @@
+name: Feature request
+description: Propose a product or engineering improvement.
+title: 'feat: '
+labels: ['enhancement']
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Throughline is a focused demo. The best proposals make the HTML-in-Canvas argument sharper, not the feature list longer.
+
+  - type: dropdown
+    id: area
+    attributes:
+      label: Product area
+      options:
+        - Board interaction
+        - Presentation mode
+        - Structure and accessibility
+        - Export
+        - Fallback and browser support
+        - Design and motion
+        - Tooling and agent workflow
+    validations:
+      required: true
+
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem
+      description: What is the user or developer pain?
+    validations:
+      required: true
+
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposal
+      description: What should change, and how would a visitor experience it?
+    validations:
+      required: true
+
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives considered
+      description: What else could solve the problem?
+
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Evidence or references
+      description: Links, screenshots, performance numbers, or API references.
+
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: Before submitting
+      options:
+        - label: I checked the roadmap and existing issues.
+          required: true
+        - label: This proposal keeps the flat fallback and accessibility paths intact.
+          required: true
