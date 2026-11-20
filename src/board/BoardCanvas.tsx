@@ -90,6 +90,13 @@ function getInsets(viewport: Viewport) {
     : { top: 88, right: 32, bottom: 96, left: 32 }
 }
 
+function prefersReducedMotion(): boolean {
+  return (
+    typeof window !== 'undefined' &&
+    window.matchMedia('(prefers-reduced-motion: reduce)').matches
+  )
+}
+
 export const BoardCanvas = forwardRef<BoardHandle, BoardCanvasProps>(
   function BoardCanvas(
     {
@@ -199,12 +206,13 @@ export const BoardCanvas = forwardRef<BoardHandle, BoardCanvasProps>(
         }
 
         cancelAnimation()
-        if (options?.scale !== undefined) {
-          setRenderScale(options.scale)
+        const nextScale = options?.scale
+        if (nextScale !== undefined) {
+          setRenderScale(nextScale)
         }
 
         const start = { ...cameraRef.current }
-        const duration = options?.duration ?? 720
+        const duration = prefersReducedMotion() ? 1 : (options?.duration ?? 720)
         const startTime = performance.now()
 
         return new Promise<void>((resolve) => {
