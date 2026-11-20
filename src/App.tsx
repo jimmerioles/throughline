@@ -12,6 +12,7 @@ import {
   PRESENT_STEPS,
 } from './board/data'
 import { clearSaved, loadSaved, saveBoard } from './board/storage'
+import { caseStudyHref } from './routing'
 import type {
   BoardCard,
   Camera,
@@ -477,7 +478,8 @@ function App() {
           <div className="topbar__actions">
             <a
               className="button button--ghost"
-              href="#/case-study"
+              href={caseStudyHref()}
+              data-case-study-link
               aria-label="Read the case study"
             >
               <IconCaseStudy />

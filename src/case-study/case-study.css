@@ -1,8 +1,6 @@
 .case-study {
   --cs-gutter: clamp(20px, 4vw, 48px);
-  height: 100%;
-  overflow-x: hidden;
-  overflow-y: auto;
+  min-height: 100%;
   background-color: var(--board);
   background-image: radial-gradient(
     circle at 50% -20%,
@@ -10,6 +8,18 @@
     rgba(231, 220, 201, 0) 58%
   );
   color: var(--ink);
+}
+
+html.case-study-route,
+html.case-study-route body,
+html.case-study-route #root {
+  height: auto;
+  min-height: 100%;
+}
+
+html.case-study-route body {
+  overflow-x: hidden;
+  overflow-y: auto;
 }
 
 .cs-shell {

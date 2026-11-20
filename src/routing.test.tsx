@@ -1,4 +1,4 @@
-import { render, screen, within } from '@testing-library/react'
+import { render, screen, waitFor, within } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { beforeEach, describe, expect, it } from 'vitest'
 import { Root } from './Root'
@@ -48,6 +48,11 @@ describe('hash routing', () => {
     expect(
       await screen.findByRole('heading', { level: 1, name: 'The Lumen' }),
     ).toBeInTheDocument()
+    await waitFor(() =>
+      expect(
+        screen.getByRole('link', { name: 'Read the case study' }),
+      ).toHaveFocus(),
+    )
   })
 
   it('opens the case study from the demo top bar', async () => {

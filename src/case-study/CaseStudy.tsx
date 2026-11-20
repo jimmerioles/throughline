@@ -190,7 +190,6 @@ const LIMITATIONS = [
   'Export writes the current board view as a PNG, not a separate print layout.',
   'Structure is a semantic map of the cards, not a live accessibility tree inspector.',
   'The performance figures are constants and budgets from the build, not a published benchmark. A frame trace on a mid-range laptop is still to come.',
-  'The walkthrough video is not recorded yet. The script is finished and linked below.',
 ]
 
 const NEXT = [
@@ -522,7 +521,6 @@ export function CaseStudy() {
                         alt="Presentation mode showing the big idea card enlarged on a dimmed board, with a narration bar across the bottom."
                         width={1440}
                         height={900}
-                        loading="lazy"
                       />
                       <figcaption>
                         Present mode. The camera flies to one card while the HUD
@@ -657,7 +655,6 @@ ctx.drawElementImage(card, x, y, width, height)`}</code>
                       alt="Structure view outlining every card on the board, with a panel listing ten cards, their roles, and control counts."
                       width={1440}
                       height={900}
-                      loading="lazy"
                     />
                     <figcaption>
                       Structure view. The panel lists the real cards and their
@@ -699,7 +696,6 @@ ctx.drawElementImage(card, x, y, width, height)`}</code>
                       alt="The compact flat view of the same board at a mobile width, with the cards stacked in a single column."
                       width={780}
                       height={1688}
-                      loading="lazy"
                     />
                     <figcaption>
                       The flat compact view at 390px. Same content, same

@@ -24,6 +24,11 @@ if (!window.requestAnimationFrame) {
   window.cancelAnimationFrame = (handle) => window.clearTimeout(handle)
 }
 
+Object.defineProperty(window, 'scrollTo', {
+  writable: true,
+  value: vi.fn(),
+})
+
 beforeEach(() => {
   window.localStorage.clear()
 })
