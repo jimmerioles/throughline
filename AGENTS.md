@@ -25,6 +25,7 @@ Read the smallest document that matches the task.
 | Palette, type, card anatomy, chrome, motion                 | [docs/design-system.md](docs/design-system.md)             |
 | Browser matrix, manual canvas checks, release checks        | [docs/qa/manual-test-plan.md](docs/qa/manual-test-plan.md) |
 | Deployment, rollback, browser support, security             | [docs/operations.md](docs/operations.md)                   |
+| Case study page, routing, walkthrough script                | [docs/demo-script.md](docs/demo-script.md)                 |
 | Why a technical or product choice exists                    | [docs/decisions](docs/decisions/README.md)                 |
 | What to build next                                          | [docs/roadmap.md](docs/roadmap.md)                         |
 
@@ -53,17 +54,18 @@ If the canvas is blank, clicks land in the wrong place, or text looks soft, read
 
 ## Editing map
 
-| Area                                                 | Files                                   |
-| ---------------------------------------------------- | --------------------------------------- |
-| Board copy, positions, connectors, present narration | `src/board/data.ts`                     |
-| Card markup and interactive controls                 | `src/board/Card.tsx`                    |
-| Card and canvas CSS                                  | `src/board/board.css`, `src/App.css`    |
-| Canvas painting and overlays                         | `src/board/renderer.ts`                 |
-| Camera math                                          | `src/board/camera.ts`                   |
-| Pointer input, paint loop, render scale              | `src/board/BoardCanvas.tsx`             |
-| App state, modes, keyboard, export, fallback         | `src/App.tsx`                           |
-| Design tokens and base styles                        | `src/index.css`                         |
-| Tests                                                | `src/**/*.test.ts`, `src/**/*.test.tsx` |
+| Area                                                 | Files                                               |
+| ---------------------------------------------------- | --------------------------------------------------- |
+| Board copy, positions, connectors, present narration | `src/board/data.ts`                                 |
+| Card markup and interactive controls                 | `src/board/Card.tsx`                                |
+| Card and canvas CSS                                  | `src/board/board.css`, `src/App.css`                |
+| Canvas painting and overlays                         | `src/board/renderer.ts`                             |
+| Camera math                                          | `src/board/camera.ts`                               |
+| Pointer input, paint loop, render scale              | `src/board/BoardCanvas.tsx`                         |
+| App state, modes, keyboard, export, fallback         | `src/App.tsx`                                       |
+| Hash routing and the case study                      | `src/Root.tsx`, `src/routing.ts`, `src/case-study/` |
+| Design tokens and base styles                        | `src/index.css`                                     |
+| Tests                                                | `src/**/*.test.ts`, `src/**/*.test.tsx`             |
 
 All visible copy for The Lumen lives in `src/board/data.ts`. Change it there, not inside the renderer.
 

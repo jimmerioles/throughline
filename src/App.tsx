@@ -12,6 +12,7 @@ import {
   PRESENT_STEPS,
 } from './board/data'
 import { clearSaved, loadSaved, saveBoard } from './board/storage'
+import { caseStudyHref } from './routing'
 import type {
   BoardCard,
   Camera,
@@ -109,6 +110,15 @@ function IconCheck() {
   return (
     <svg viewBox="0 0 16 16" className="icon" aria-hidden="true">
       <path d="m2.8 8.4 3.4 3.4 7-7.6" />
+    </svg>
+  )
+}
+
+function IconCaseStudy() {
+  return (
+    <svg viewBox="0 0 16 16" className="icon" aria-hidden="true">
+      <path d="M4 2.5h5l3 3v8H4z" />
+      <path d="M9 2.5v3h3M6 8h4M6 10.5h4" />
     </svg>
   )
 }
@@ -466,6 +476,15 @@ function App() {
           </div>
 
           <div className="topbar__actions">
+            <a
+              className="button button--ghost"
+              href={caseStudyHref()}
+              data-case-study-link
+              aria-label="Read the case study"
+            >
+              <IconCaseStudy />
+              <span>Case study</span>
+            </a>
             {flatView ? (
               <span className="topbar__flat-note">
                 {isUnsupported

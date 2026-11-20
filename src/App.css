@@ -143,6 +143,7 @@
   letter-spacing: 0.08em;
   text-transform: uppercase;
   white-space: nowrap;
+  text-decoration: none;
   cursor: pointer;
   transition:
     background 140ms ease,

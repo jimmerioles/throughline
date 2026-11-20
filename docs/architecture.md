@@ -18,7 +18,9 @@ The architecture optimizes for those three requirements, not for a general scene
 
 ```
 src/
-  main.tsx                 React entry, font imports, global CSS
+  main.tsx                 React entry, font imports, global CSS, root render
+  Root.tsx                 hash route switch between the board and the case study
+  routing.ts               hash parsing and the route hook
   App.tsx                  app shell, modes, keyboard, persistence, export
   board/
     BoardCanvas.tsx        canvas element, camera, paint loop, pointer input
@@ -28,12 +30,34 @@ src/
     data.ts                The Lumen content and board layout
     storage.ts             localStorage schema and IO
     types.ts               shared types
+  case-study/
+    CaseStudy.tsx          the public case study page
+    case-study.css         editorial layout for the case study
+    images/                optimized WebP copies of the docs screenshots
   index.css                design tokens and base styles
   App.css                  app chrome, HUD, panel, flat view
   board/board.css          card typography and content
 ```
 
-`App.tsx` owns product state: cards, editable content, selection, mode, presentation step, structure visibility, zoom label, and fallback selection. `BoardCanvas.tsx` owns the camera and the render loop. `Card.tsx` is the only place that knows what each card looks like.
+`Root.tsx` chooses between the board and the case study. `App.tsx` owns product state: cards, editable content, selection, mode, presentation step, structure visibility, zoom label, and fallback selection. `BoardCanvas.tsx` owns the camera and the render loop. `Card.tsx` is the only place that knows what each card looks like.
+
+## Routing and the case study
+
+The site has two hash routes and no router dependency.
+
+| Hash           | View                           |
+| -------------- | ------------------------------ |
+| empty or `#/`  | The Lumen board                |
+| `#/case-study` | The public case study          |
+| anything else  | The board, as the safe default |
+
+Hash routing was chosen because the build uses `base: './'` and deploys to GitHub Pages. The route never touches the path, so the same build works at a domain root, a repository subpath, or a local preview. There is no server rewrite to configure.
+
+`Root` updates `document.title` and renders the matching view. Entering the case study moves focus to its `main` landmark. The case study is normal DOM: it does not call the canvas API and it does not import the board. It shares the tokens and fonts only.
+
+Returning to the board mounts `App` again. That is deliberate: `App` loads the saved board from localStorage, and `BoardCanvas` fits the camera on mount. The route change is infrequent, so a fresh board is more predictable than preserving a camera that was left behind.
+
+The case study uses optimized WebP copies of the screenshots in `docs/`. The PNG originals stay in `docs/` for the README and documentation.
 
 ## Rendering lifecycle
 
@@ -130,7 +154,7 @@ The cards are the accessibility tree. There is no parallel semantic model.
 - Opening Structure focuses the close button. Closing it returns focus to the Structure button.
 - Choosing a card in Structure flies to it and focuses the card.
 - The canvas draws focus rings, carets, and selection through the browser's HTML-in-Canvas integration.
-- `prefers-reduced-motion` shortens transitions and camera work through CSS and the animation timing.
+- `prefers-reduced-motion` collapses camera flights to a 1 ms transition and shortens CSS transitions. The camera still lands on the target.
 
 The Structure view is a semantic map, not a live browser accessibility tree inspector. The cards themselves are the live tree.
 
@@ -199,14 +223,16 @@ At 100 or more cards, the next steps are level-of-detail snapshots, offscreen ca
 
 ## Testing
 
-- Vitest covers camera math, board data integrity, storage round-trips, and the flat fallback interaction.
+- Vitest covers camera math, board data integrity, storage round-trips, the flat fallback interaction, and the hash route between the board and the case study.
 - Testing Library runs the fallback path in jsdom. The canvas path is tested manually because jsdom does not implement HTML-in-Canvas.
-- The manual test plan covers the canvas path in Chrome 157+, older Chromium with the flag, unsupported browsers, compact viewports, keyboard, and screen reader spot checks.
+- The manual test plan covers the canvas path in Chrome 157+, older Chromium with the flag, unsupported browsers, compact viewports, keyboard, screen reader spot checks, and the case study route.
 - CI runs format check, lint, typecheck, tests, and build.
 
 ## Deployment
 
 The app builds to static files in `dist`. `vite.config.ts` sets `base: './'`, so the build works at a domain root or a repository subpath.
+
+The case study uses hash routes, so it needs no server rewrite on GitHub Pages or other static hosts.
 
 The included GitHub Actions workflow deploys to GitHub Pages on pushes to `main`. Any static host works with the same build output.
 

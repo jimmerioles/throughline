@@ -105,7 +105,7 @@ Chrome should never compete with the cards. If a control needs a bright color, u
 - Present step changes update the caption immediately and animate the camera.
 - Hover transitions are 140ms.
 - The hint fades over 500ms.
-- Respect `prefers-reduced-motion`; the stylesheet shortens transitions and the camera still lands on the target.
+- Respect `prefers-reduced-motion`; the stylesheet shortens transitions and camera flights collapse to a single frame.
 - Do not add looping motion to the board. The only continuous loop is an active camera flight.
 
 ## Accessibility

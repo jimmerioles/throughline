@@ -111,7 +111,7 @@ Pass condition: no blank canvas, no console errors, all cards readable.
 - [ ] The HUD announces step changes.
 - [ ] The Structure panel is reachable and its rows are buttons.
 - [ ] Escape closes overlays without trapping focus.
-- [ ] `prefers-reduced-motion` removes unnecessary motion.
+- [ ] `prefers-reduced-motion` collapses camera flights and leaves the card crisp.
 
 ## Fallback and responsive
 
@@ -127,6 +127,22 @@ Pass condition: no blank canvas, no console errors, all cards readable.
 - [ ] At 390x844, the cards scale and remain readable.
 - [ ] At 520px tall, the compact view appears.
 
+## Case study
+
+- [ ] The Case study link in the demo top bar opens `#/case-study`.
+- [ ] Opening `#/case-study` directly, then reloading, keeps the case study.
+- [ ] Empty hash and `#/` both show the board.
+- [ ] The case study page has one `h1`, a skip link, and visible focus.
+- [ ] The case study renders as normal DOM with no canvas element.
+- [ ] The back link returns to the board, which loads saved state and fits.
+- [ ] The document title matches the current route.
+- [ ] The poster says the recording is pending and the shot list button scrolls to the list.
+- [ ] The optimized screenshots load and the figures have captions.
+- [ ] The html2canvas comparison is readable at 1440x900 and 390x844.
+- [ ] The page has no horizontal scroll at 390x844.
+- [ ] Firefox and Safari render the case study without the canvas API.
+- [ ] The case study has no console errors.
+
 ## Performance
 
 - [ ] Pan is smooth at 1440x900.
@@ -139,8 +155,9 @@ Pass condition: no blank canvas, no console errors, all cards readable.
 ## Release checklist
 
 - [ ] `npm run check` passes.
-- [ ] Manual smoke, explore, edit, present, structure, export, fallback, and accessibility sections pass.
+- [ ] Manual smoke, explore, edit, present, structure, export, fallback, accessibility, and case study sections pass.
 - [ ] README screenshots still match the UI.
+- [ ] The case study route, shot list, and screenshots are current.
 - [ ] `CHANGELOG.md` updated.
 - [ ] Deployed build opened from the public URL.
 - [ ] Chrome 157 and one fallback browser checked on the public URL.
