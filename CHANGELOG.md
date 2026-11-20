@@ -27,6 +27,7 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/). The
 
 ### Notes
 
+- The demo is live at <https://jimmerioles.github.io/throughline/>. The canvas path was verified in Chrome 157 and the flat fallback in Firefox 158 on 2026-11-20.
 - The walkthrough video is not recorded yet. The script is the deliverable; the page does not fake a video.
 - The public deployment is still pending.
 

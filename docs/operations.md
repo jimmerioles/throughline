@@ -62,7 +62,7 @@ The repository includes `.github/workflows/deploy-pages.yml`.
 3. Set Source to GitHub Actions.
 4. Open the deployment URL from the workflow run.
 
-The case study uses hash routing, so Pages needs no rewrite rule. The board is at the base URL and the case study is at `#/case-study`.
+The public site is <https://jimmerioles.github.io/throughline/>. The case study uses hash routing, so Pages needs no rewrite rule. The board is at the base URL and the case study is at `#/case-study`.
 
 ### Cloudflare Pages, Netlify, or Vercel
 

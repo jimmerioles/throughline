@@ -16,7 +16,7 @@ Shipped 2026-11-20.
 
 ## Case study
 
-Shipped 2026-11-20. The page and the script are in the repository; the recording and the public deployment are the remaining release tasks.
+Shipped 2026-11-20. The page is deployed at [jimmerioles.github.io/throughline/#/case-study](https://jimmerioles.github.io/throughline/#/case-study). The recording is the remaining release task.
 
 - A public case study at `#/case-study` with the problem, an html2canvas comparison, the architecture, performance notes, accessibility notes, limitations, and next steps.
 - Hash routing for the board and the case study, with no router dependency.
@@ -36,9 +36,8 @@ Acceptance criteria:
 ## Next
 
 1. **Record the walkthrough.** Follow [demo-script.md](demo-script.md), capture at 1440x900 in Chrome 157, and replace the poster with the video.
-2. **Deploy the public demo.** Confirm the canvas path in Chrome 157 and the flat fallback in Firefox or Safari from the live URL.
-3. **Publish a frame trace.** Measure paint counts and frame pacing on a mid-range laptop, then replace the design budgets with measured numbers where possible.
-4. **Add a live comparison route.** Keep the editorial table and add a runnable html2canvas side-by-side for visitors who want the details.
+2. **Publish a frame trace.** Measure paint counts and frame pacing on a mid-range laptop, then replace the design budgets with measured numbers where possible.
+3. **Add a live comparison route.** Keep the editorial table and add a runnable html2canvas side-by-side for visitors who want the details.
 
 ## Later
 

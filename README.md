@@ -6,6 +6,9 @@ A spatial narrative board for shaping a launch story. Built with HTML-in-Canvas,
 
 Throughline demonstrates the HTML-in-Canvas API in Chrome 157+. Every card on the board is real DOM: real text, real inputs, real checkboxes, real focus order, real screen reader names. The browser paints those cards into a 2D canvas with `drawElementImage()`, so they can be moved, zoomed, and presented like canvas objects without giving up the behavior of HTML.
 
+**Live demo:** [jimmerioles.github.io/throughline](https://jimmerioles.github.io/throughline/)  
+**Case study:** [jimmerioles.github.io/throughline/#/case-study](https://jimmerioles.github.io/throughline/#/case-study)
+
 ## The demo
 
 The board tells the story of a fictional neighborhood cinema reopening campaign, The Lumen. It is not a screenshot. Try:
