@@ -65,7 +65,7 @@ The canvas contains the cards as direct children, each marked `drawable`. A pain
 
 ## Tests
 
-`npm run test:run` covers camera math, board data, storage, routing, and the flat fallback. The canvas path is manual; see the [manual test plan](docs/qa/manual-test-plan.md).
+`npm run test:run` covers camera math, board data, storage, routing, and the flat fallback, including persistence, reset, and compact view. The canvas path is manual; see the [manual test plan](docs/qa/manual-test-plan.md).
 
 ## Docs
 

@@ -1,9 +1,14 @@
 import { describe, expect, it } from 'vitest'
 import {
+  MAX_ZOOM,
+  MIN_ZOOM,
   clamp,
+  easeInOutCubic,
   fitCamera,
   isCardVisible,
+  lerpCamera,
   presentCamera,
+  sameCamera,
   screenToWorld,
   zoomAroundPoint,
 } from './camera'
@@ -73,5 +78,51 @@ describe('camera', () => {
     expect(isCardVisible({ ...card, x: 2000, y: 2000 }, camera, viewport)).toBe(
       false,
     )
+  })
+
+  it('keeps a margin around cards near the viewport edge', () => {
+    const camera = { x: 0, y: 0, zoom: 1 }
+
+    expect(
+      isCardVisible({ ...card, x: -card.width - 100, y: 0 }, camera, viewport),
+    ).toBe(true)
+    expect(
+      isCardVisible({ ...card, x: -card.width - 200, y: 0 }, camera, viewport),
+    ).toBe(false)
+  })
+
+  it('clamps fit and presentation zoom at both ends', () => {
+    const hugeBounds = { minX: 0, minY: 0, maxX: 100000, maxY: 100000 }
+    const tinyBounds = { minX: 0, minY: 0, maxX: 1, maxY: 1 }
+
+    expect(fitCamera(viewport, hugeBounds, insets).zoom).toBe(MIN_ZOOM)
+    expect(fitCamera(viewport, tinyBounds, insets).zoom).toBe(MAX_ZOOM)
+    expect(
+      presentCamera({ ...card, width: 10000, height: 10000 }, viewport).zoom,
+    ).toBe(0.7)
+    expect(presentCamera({ ...card, width: 1, height: 1 }, viewport).zoom).toBe(
+      2.4,
+    )
+  })
+
+  it('interpolates between cameras', () => {
+    const from = { x: 0, y: 0, zoom: 1 }
+    const to = { x: 100, y: 200, zoom: 2 }
+
+    expect(lerpCamera(from, to, 0)).toEqual(from)
+    expect(lerpCamera(from, to, 0.5)).toEqual({ x: 50, y: 100, zoom: 1.5 })
+    expect(lerpCamera(from, to, 1)).toEqual(to)
+  })
+
+  it('eases camera motion and compares cameras within tolerance', () => {
+    const from = { x: 0, y: 0, zoom: 1 }
+
+    expect(easeInOutCubic(0)).toBe(0)
+    expect(easeInOutCubic(0.25)).toBeCloseTo(0.0625)
+    expect(easeInOutCubic(0.5)).toBe(0.5)
+    expect(easeInOutCubic(0.75)).toBeCloseTo(0.9375)
+    expect(easeInOutCubic(1)).toBe(1)
+    expect(sameCamera(from, { x: 0.005, y: 0.005, zoom: 1.00005 })).toBe(true)
+    expect(sameCamera(from, { x: 0.02, y: 0, zoom: 1 })).toBe(false)
   })
 })
