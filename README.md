@@ -1,10 +1,18 @@
-# Throughline
-
-A spatial narrative board for shaping a launch story. Built with HTML-in-Canvas, React, TypeScript, and Vite.
-
-**Live demo:** [jimmerioles.github.io/throughline](https://jimmerioles.github.io/throughline/)
+<div align="center">
 
 https://github.com/user-attachments/assets/4aae4e5c-f9ca-4218-81da-2fea569c7219
+
+[![Tests](https://github.com/jimmerioles/throughline/actions/workflows/test.yml/badge.svg)](https://github.com/jimmerioles/throughline/actions/workflows/test.yml) [![Deploy to GitHub Pages](https://github.com/jimmerioles/throughline/actions/workflows/deploy-pages.yml/badge.svg)](https://github.com/jimmerioles/throughline/actions/workflows/deploy-pages.yml)
+
+**Live demo:** https://jimmerioles.github.io/throughline/
+
+**Case study:** https://jimmerioles.github.io/throughline/#/case-study
+
+</div>
+
+# Throughline
+
+**A spatial narrative board for shaping a launch story. Built with HTML-in-Canvas, React, TypeScript, and Vite.**
 
 Throughline is a working product demo for HTML-in-Canvas. Ten real HTML cards tell the launch story for The Lumen, a fictional neighborhood cinema, on a board you can pan, zoom, edit, present, and export. The cards are painted into a canvas, but their text, controls, focus order, and screen reader names stay native.
 
